@@ -3,6 +3,7 @@ import pandas as pd
 import io
 from datetime import datetime, timedelta
 import base64
+import webbrowser
 
 # Configuración de página
 st.set_page_config(
@@ -271,6 +272,35 @@ st.markdown("""
         box-shadow: 0 5px 10px rgba(160, 174, 192, 0.2);
     }
     
+    /* Enlaces estilo botón */
+    .concession-link {
+        display: inline-block;
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+        position: relative;
+        overflow: hidden;
+        margin-top: auto;
+    }
+    
+    .concession-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 20px rgba(16, 185, 129, 0.4);
+        text-decoration: none;
+        color: #ffffff;
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+    
     /* Info boxes con verde profesional */
     .info-box {
         background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
@@ -429,19 +459,6 @@ concesiones = [
 # -----------------------------
 st.markdown('<h2 class="sub-header">🛣️ CONCESIONES VIALES</h2>', unsafe_allow_html=True)
 
-# Función JavaScript para redirección
-st.markdown("""
-<script>
-function redirectToConcession(url) {
-    if (url) {
-        window.open(url, '_blank');
-    } else {
-        alert('Esta concesión estará disponible próximamente.');
-    }
-}
-</script>
-""", unsafe_allow_html=True)
-
 # Crear grid de concesiones
 st.markdown('<div class="concessions-grid">', unsafe_allow_html=True)
 
@@ -449,25 +466,31 @@ for i, concesion in enumerate(concesiones, 1):
     nombre = concesion["nombre"]
     url = concesion["url"]
     
-    # Determinar la clase del botón y el texto
-    if url:
-        btn_class = "concession-btn"
-        btn_text = f"Acceder a {nombre}"
-        onclick = f"redirectToConcession('{url}')"
-    else:
-        btn_class = "concession-btn btn-disabled"
-        btn_text = "Próximamente"
-        onclick = "redirectToConcession(null)"
-    
-    st.markdown(f"""
-    <div class="concession-card">
-        <div class="concession-number">{i}</div>
-        <h3 class="concession-title">{nombre}</h3>
-        <button class="{btn_class}" onclick="{onclick}">
-            {btn_text}
-        </button>
-    </div>
-    """, unsafe_allow_html=True)
+    # Usar columnas para cada tarjeta
+    col1, col2, col3 = st.columns([1, 20, 1])
+    with col2:
+        if url:
+            # Para concesiones con URL, usar markdown con enlace
+            st.markdown(f"""
+            <div class="concession-card">
+                <div class="concession-number">{i}</div>
+                <h3 class="concession-title">{nombre}</h3>
+                <a href="{url}" target="_blank" class="concession-link">
+                    Acceder a {nombre}
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            # Para concesiones sin URL, mostrar botón deshabilitado
+            st.markdown(f"""
+            <div class="concession-card">
+                <div class="concession-number">{i}</div>
+                <h3 class="concession-title">{nombre}</h3>
+                <button class="concession-btn btn-disabled" disabled>
+                    Próximamente
+                </button>
+            </div>
+            """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
