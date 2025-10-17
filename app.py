@@ -406,7 +406,7 @@ st.markdown("""
 # Lista de Concesiones con URLs
 # -----------------------------
 concesiones = [
-    {"nombre": "ACCENORTE", "url": None},
+    {"nombre": "ACCENORTE", "url": "https://accenorte-validacion-automatica-angeltorres.streamlit.app/"},
     {"nombre": "ALT. VIALES", "url": "https://alvarado-validacion-automatica-angeltorres.streamlit.app/"},
     {"nombre": "ALMA", "url": "https://alma-validacion-automatica-angeltorres.streamlit.app/"},
     {"nombre": "AUT. EL CAFE", "url": None},
