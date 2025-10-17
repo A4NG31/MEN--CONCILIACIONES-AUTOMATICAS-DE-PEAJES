@@ -48,7 +48,7 @@ st.markdown("""
         background-attachment: fixed;
         min-height: 100vh;
         padding: 2rem;
-        max-width: 1200px;
+        max-width: 1400px;
     }
     
     .stApp {
@@ -62,8 +62,8 @@ st.markdown("""
         color: #ffffff;
         font-size: 2.8rem;
         font-weight: 800;
-        margin-bottom: 3rem;
-        padding: 3rem 2rem;
+        margin-bottom: 2rem;
+        padding: 2.5rem 2rem;
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         border-radius: 25px;
         border: none;
@@ -94,12 +94,12 @@ st.markdown("""
     }
     
     .company-logo {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         border: 4px solid rgba(255,255,255,0.8);
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         transition: transform 0.3s ease;
     }
     
@@ -109,9 +109,9 @@ st.markdown("""
     
     .header-subtitle {
         color: #e2e8f0;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 400;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         opacity: 0.95;
         line-height: 1.5;
     }
@@ -119,10 +119,10 @@ st.markdown("""
     /* Títulos de secciones con verde profesional */
     .sub-header {
         color: #ffffff;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
-        margin: 3rem 0 2rem 0;
-        padding: 1.5rem 2rem;
+        margin: 2rem 0 1.5rem 0;
+        padding: 1.2rem 2rem;
         background: linear-gradient(135deg, #047857 0%, #065f46 100%);
         border-radius: 20px;
         border-left: 6px solid #34d399;
@@ -142,21 +142,22 @@ st.markdown("""
         border-radius: 0 0 20px 20px;
     }
     
-    /* Grid de concesiones */
-    .concessions-grid {
+    /* Matriz de concesiones 8x7 */
+    .concessions-matrix {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin: 3rem 0;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(8, auto);
+        gap: 1rem;
+        margin: 2rem 0;
     }
     
-    .concession-card {
+    .concession-cell {
         background: linear-gradient(145deg, #ffffff 0%, #f7fafc 100%);
-        border-radius: 20px;
-        padding: 1.5rem;
+        border-radius: 15px;
+        padding: 1rem 0.8rem;
         box-shadow: 
-            0 15px 20px -5px rgba(0, 0, 0, 0.1),
-            0 8px 8px -5px rgba(0, 0, 0, 0.04);
+            0 10px 15px -5px rgba(0, 0, 0, 0.1),
+            0 5px 5px -5px rgba(0, 0, 0, 0.04);
         border: 2px solid #e2e8f0;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
@@ -165,67 +166,73 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%;
+        height: 120px;
+        min-height: 120px;
     }
     
-    .concession-card:hover {
-        transform: translateY(-5px) scale(1.02);
+    .concession-cell:hover {
+        transform: translateY(-3px) scale(1.02);
         box-shadow: 
-            0 20px 40px -12px rgba(0, 0, 0, 0.25),
-            0 15px 15px -5px rgba(0, 0, 0, 0.1);
+            0 15px 25px -8px rgba(0, 0, 0, 0.25),
+            0 10px 10px -5px rgba(0, 0, 0, 0.1);
         border-color: #10b981;
     }
     
-    .concession-card::before {
+    .concession-cell::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px;
         background: linear-gradient(90deg, #10b981 0%, #059669 50%, #34d399 100%);
     }
     
     .concession-number {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 8px;
+        left: 8px;
         background: #10b981;
         color: white;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         font-weight: bold;
     }
     
     .concession-title {
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: 700;
         color: #2d3748;
-        margin: 0.5rem 0 1rem 0;
+        margin: 0.8rem 0 0.5rem 0;
         line-height: 1.2;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
     
     /* Botones profesionales con verde GoPass */
     .concession-btn {
         display: inline-block;
         width: 100%;
-        padding: 0.8rem 1.5rem;
+        padding: 0.5rem 0.8rem;
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         color: #ffffff;
         text-decoration: none;
-        border-radius: 12px;
-        font-size: 1rem;
+        border-radius: 10px;
+        font-size: 0.8rem;
         font-weight: 600;
         text-align: center;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         border: none;
         cursor: pointer;
-        box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 5px 10px rgba(16, 185, 129, 0.3);
         position: relative;
         overflow: hidden;
         margin-top: auto;
@@ -248,7 +255,7 @@ st.markdown("""
     
     .concession-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 20px rgba(16, 185, 129, 0.4);
+        box-shadow: 0 8px 15px rgba(16, 185, 129, 0.4);
         text-decoration: none;
         color: #ffffff;
         background: linear-gradient(135deg, #059669 0%, #047857 100%);
@@ -261,38 +268,38 @@ st.markdown("""
     /* Botón deshabilitado */
     .btn-disabled {
         background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
-        box-shadow: 0 5px 10px rgba(160, 174, 192, 0.2);
+        box-shadow: 0 3px 8px rgba(160, 174, 192, 0.2);
         cursor: not-allowed;
     }
     
     .btn-disabled:hover {
         transform: none;
         background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
-        box-shadow: 0 5px 10px rgba(160, 174, 192, 0.2);
+        box-shadow: 0 3px 8px rgba(160, 174, 192, 0.2);
     }
     
     /* Info boxes con verde profesional */
     .info-box {
         background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: 20px;
         border: 2px solid #10b981;
-        margin: 2rem 0;
+        margin: 1.5rem 0;
         box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
         color: #064e3b;
     }
     
     .info-box h3 {
         color: #047857;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         font-weight: 700;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     
     .info-box ul {
         color: #065f46;
-        line-height: 1.8;
-        font-size: 1rem;
+        line-height: 1.6;
+        font-size: 0.9rem;
     }
     
     .info-box strong {
@@ -303,57 +310,99 @@ st.markdown("""
     /* Footer profesional */
     .footer {
         text-align: center;
-        padding: 3rem 2rem;
+        padding: 2rem 1.5rem;
         color: #e2e8f0;
         background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-        border-radius: 25px;
-        margin-top: 4rem;
+        border-radius: 20px;
+        margin-top: 3rem;
         border: 2px solid #4a5568;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     }
     
     .footer strong {
         color: #10b981;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
     }
     
     .footer p {
-        margin: 0.8rem 0;
-        font-size: 1rem;
-        line-height: 1.6;
+        margin: 0.6rem 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
     
     /* Responsive mejorado */
+    @media (max-width: 1200px) {
+        .concessions-matrix {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(8, auto);
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .concessions-matrix {
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(10, auto);
+        }
+    }
+    
     @media (max-width: 768px) {
         .main-header {
-            font-size: 2.2rem;
+            font-size: 2rem;
             padding: 2rem 1.5rem;
         }
         
-        .concessions-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
+        .concessions-matrix {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(12, auto);
         }
         
-        .concession-card {
-            padding: 1.2rem;
+        .concession-cell {
+            height: 110px;
+            min-height: 110px;
+            padding: 0.8rem 0.6rem;
+        }
+        
+        .concession-title {
+            font-size: 0.9rem;
         }
         
         .company-logo {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
         }
         
         .sub-header {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             padding: 1rem 1.5rem;
         }
     }
     
-    @media (max-width: 480px) {
-        .concessions-grid {
-            grid-template-columns: 1fr;
+    @media (max-width: 576px) {
+        .concessions-matrix {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(16, auto);
+        }
+        
+        .concession-cell {
+            height: 100px;
+            min-height: 100px;
+        }
+        
+        .concession-title {
+            font-size: 0.85rem;
+        }
+        
+        .concession-btn {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.6rem;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .concessions-matrix {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(23, auto);
         }
     }
 </style>
@@ -367,7 +416,7 @@ st.markdown("""
     <div class="header-content">
         <img src="https://i.imgur.com/PgN46mi.jpeg" class="company-logo">
         <h1>CONCESIONES DISPONIBLES</h1>
-        <p class="header-subtitle">MENÚ DE CONCESIONES VIALES</p>
+        <p class="header-subtitle">MATRIZ DE CONCESIONES VIALES - 8 FILAS × 7 COLUMNAS</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -376,58 +425,20 @@ st.markdown("""
 # Lista de Concesiones
 # -----------------------------
 concesiones = [
-    "ACCENORTE",
-    "ALT. VIALES", 
-    "ALMA",
-    "AUT. EL CAFE",
-    "APP GICA",
-    "AUT. DEL CARIBE",
-    "AUT. RIO GRANDE",
-    "AUT. RIO MAGDA",
-    "ALCA. ENVIGADO",
-    "AUT. NORDESTE",
-    "AUTOVIA BTS",
-    "AUT. NEIVA-GIRAR",
-    "PANAMERICANA",
-    "COVIANDINA",
-    "COVIORIENTE",
-    "COVIPACIFICO",
-    "DEVIMAR",
-    "DEVIMED",
-    "DEVISAB",
-    "FINDETER",
-    "LA PINTADA",
-    "PACIFICO TRES",
-    "PEAJES NACIONALES",
-    "PERI. DEL ORIENTE",
-    "CONCESIÓN PISA",
-    "RUTA AL MAR",
-    "RUTA AL SUR",
-    "RUTA COSTERA C-B",
-    "RUTA DEL CACAO",
-    "R. MAGDALENA S.M",
-    "RUTA DEL VALLE",
-    "SABA. DE OCCIDENTE",
-    "RUTA PORTUARIA",
-    "TUNEL ABURRA OR.",
-    "U.V CAMINO DEL P.",
-    "VIA 40 EXPRESS",
-    "VIAL DE LOS LLANOS",
-    "TRANSV. SISGA",
-    "MONTES DE MARIA",
-    "RIO PAMPLONITA",
-    "UNION DEL SUR",
-    "VIAS DEL NUS",
-    "YUMA",
-    "ICCU",
-    "AUT. URABÁ",
-    "AUT. MAGDA MEDIO"
+    "ACCENORTE", "ALT. VIALES", "ALMA", "AUT. EL CAFE", "APP GICA", "AUT. DEL CARIBE", "AUT. RIO GRANDE",
+    "AUT. RIO MAGDA", "ALCA. ENVIGADO", "AUT. NORDESTE", "AUTOVIA BTS", "AUT. NEIVA-GIRAR", "PANAMERICANA",
+    "COVIANDINA", "COVIORIENTE", "COVIPACIFICO", "DEVIMAR", "DEVIMED", "DEVISAB", "FINDETER", "LA PINTADA",
+    "PACIFICO TRES", "PEAJES NACIONALES", "PERI. DEL ORIENTE", "CONCESIÓN PISA", "RUTA AL MAR", "RUTA AL SUR",
+    "RUTA COSTERA C-B", "RUTA DEL CACAO", "R. MAGDALENA S.M", "RUTA DEL VALLE", "SABA. DE OCCIDENTE",
+    "RUTA PORTUARIA", "TUNEL ABURRA OR.", "U.V CAMINO DEL P.", "VIA 40 EXPRESS", "VIAL DE LOS LLANOS",
+    "TRANSV. SISGA", "MONTES DE MARIA", "RIO PAMPLONITA", "UNION DEL SUR", "VIAS DEL NUS", "YUMA", "ICCU",
+    "AUT. URABÁ", "AUT. MAGDA MEDIO"
 ]
 
 # -----------------------------
-# Sección de Concesiones
+# Sección de Concesiones en Matriz
 # -----------------------------
-st.markdown('<h2 class="sub-header">🛣️ CONCESIONES VIALES</h2>', unsafe_allow_html=True)
+st.markdown('<h2 class="sub-header">🛣️ MATRIZ DE CONCESIONES VIALES</h2>', unsafe_allow_html=True)
 
 # Función JavaScript para redirección
 st.markdown("""
@@ -440,16 +451,29 @@ function redirectToConcession(concessionName) {
 </script>
 """, unsafe_allow_html=True)
 
-# Crear grid de concesiones
-st.markdown('<div class="concessions-grid">', unsafe_allow_html=True)
+# Crear matriz 8x7
+st.markdown('<div class="concessions-matrix">', unsafe_allow_html=True)
 
 for i, concesion in enumerate(concesiones, 1):
     st.markdown(f"""
-    <div class="concession-card">
+    <div class="concession-cell">
         <div class="concession-number">{i}</div>
-        <h3 class="concession-title">{concesion}</h3>
+        <div class="concession-title">{concesion}</div>
         <button class="concession-btn" onclick="redirectToConcession('{concesion}')">
-            Acceder a {concesion}
+            Acceder
+        </button>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Completar la matriz si hay menos de 56 elementos (8x7)
+celdas_faltantes = 56 - len(concesiones)
+for i in range(celdas_faltantes):
+    st.markdown(f"""
+    <div class="concession-cell" style="opacity: 0.3;">
+        <div class="concession-number">{len(concesiones) + i + 1}</div>
+        <div class="concession-title">Próximamente</div>
+        <button class="concession-btn btn-disabled">
+            Próximamente
         </button>
     </div>
     """, unsafe_allow_html=True)
@@ -461,13 +485,13 @@ st.markdown('</div>', unsafe_allow_html=True)
 # -----------------------------
 st.markdown("""
 <div class="info-box">
-    <h3>ℹ️ Información Importante</h3>
+    <h3>ℹ️ Información de la Matriz</h3>
     <ul>
-        <li><strong>Acceso Directo:</strong> Cada botón te lleva directamente a la concesión correspondiente en una nueva pestaña</li>
-        <li><strong>Seguridad:</strong> Conexiones seguras y encriptadas para proteger tus datos</li>
-        <li><strong>Soporte:</strong> Cada concesión incluye ayuda contextual y documentación completa</li>
-        <li><strong>Actualizaciones:</strong> Sistema en constante mejora con nuevas funcionalidades</li>
-        <li><strong>Total de Concesiones:</strong> 46 concesiones viales disponibles</li>
+        <li><strong>Estructura:</strong> Matriz de 8 filas × 7 columnas (56 celdas totales)</li>
+        <li><strong>Concesiones Activas:</strong> 46 concesiones disponibles</li>
+        <li><strong>Espacios Reservados:</strong> 10 celdas para futuras expansiones</li>
+        <li><strong>Acceso Rápido:</strong> Cada celda proporciona acceso directo a la concesión correspondiente</li>
+        <li><strong>Diseño Responsivo:</strong> Se adapta automáticamente a diferentes tamaños de pantalla</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -479,8 +503,8 @@ st.markdown("""
 <div class="footer">
     <p><strong>GoPass</strong> · Sistema Profesional de Gestión de Concesiones</p>
     <p>Plataforma centralizada para acceso a todas las concesiones viales disponibles</p>
-    <p>Soporte técnico especializado y actualizaciones continuas</p>
+    <p>Matriz organizada para navegación eficiente y rápida</p>
     <p>Desarrollado por Angel Torres</p>
-    <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">© 2025 GoPass. Todos los derechos reservados.</p>
+    <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.85rem;">© 2025 GoPass. Todos los derechos reservados.</p>
 </div>
 """, unsafe_allow_html=True)
