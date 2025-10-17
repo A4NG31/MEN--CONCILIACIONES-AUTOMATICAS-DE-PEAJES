@@ -373,55 +373,55 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Lista de Concesiones
+# Lista de Concesiones con URLs
 # -----------------------------
 concesiones = [
-    "ACCENORTE",
-    "ALT. VIALES", 
-    "ALMA",
-    "AUT. EL CAFE",
-    "APP GICA",
-    "AUT. DEL CARIBE",
-    "AUT. RIO GRANDE",
-    "AUT. RIO MAGDA",
-    "ALCA. ENVIGADO",
-    "AUT. NORDESTE",
-    "AUTOVIA BTS",
-    "AUT. NEIVA-GIRAR",
-    "PANAMERICANA",
-    "COVIANDINA",
-    "COVIORIENTE",
-    "COVIPACIFICO",
-    "DEVIMAR",
-    "DEVIMED",
-    "DEVISAB",
-    "FINDETER",
-    "LA PINTADA",
-    "PACIFICO TRES",
-    "PEAJES NACIONALES",
-    "PERI. DEL ORIENTE",
-    "CONCESIÓN PISA",
-    "RUTA AL MAR",
-    "RUTA AL SUR",
-    "RUTA COSTERA C-B",
-    "RUTA DEL CACAO",
-    "R. MAGDALENA S.M",
-    "RUTA DEL VALLE",
-    "SABA. DE OCCIDENTE",
-    "RUTA PORTUARIA",
-    "TUNEL ABURRA OR.",
-    "U.V CAMINO DEL P.",
-    "VIA 40 EXPRESS",
-    "VIAL DE LOS LLANOS",
-    "TRANSV. SISGA",
-    "MONTES DE MARIA",
-    "RIO PAMPLONITA",
-    "UNION DEL SUR",
-    "VIAS DEL NUS",
-    "YUMA",
-    "ICCU",
-    "AUT. URABÁ",
-    "AUT. MAGDA MEDIO"
+    {"nombre": "ACCENORTE", "url": None},
+    {"nombre": "ALT. VIALES", "url": "https://alvarado-validacion-automatica-angeltorres.streamlit.app/"},
+    {"nombre": "ALMA", "url": "https://alma-validacion-automatica-angeltorres.streamlit.app/"},
+    {"nombre": "AUT. EL CAFE", "url": None},
+    {"nombre": "APP GICA", "url": "https://app-gica-validacion-automatica-angeltorres.streamlit.app/"},
+    {"nombre": "AUT. DEL CARIBE", "url": None},
+    {"nombre": "AUT. RIO GRANDE", "url": None},
+    {"nombre": "AUT. RIO MAGDA", "url": None},
+    {"nombre": "ALCA. ENVIGADO", "url": None},
+    {"nombre": "AUT. NORDESTE", "url": None},
+    {"nombre": "AUTOVIA BTS", "url": None},
+    {"nombre": "AUT. NEIVA-GIRAR", "url": None},
+    {"nombre": "PANAMERICANA", "url": None},
+    {"nombre": "COVIANDINA", "url": None},
+    {"nombre": "COVIORIENTE", "url": None},
+    {"nombre": "COVIPACIFICO", "url": None},
+    {"nombre": "DEVIMAR", "url": None},
+    {"nombre": "DEVIMED", "url": None},
+    {"nombre": "DEVISAB", "url": None},
+    {"nombre": "FINDETER", "url": None},
+    {"nombre": "LA PINTADA", "url": None},
+    {"nombre": "PACIFICO TRES", "url": None},
+    {"nombre": "PEAJES NACIONALES", "url": None},
+    {"nombre": "PERI. DEL ORIENTE", "url": None},
+    {"nombre": "CONCESIÓN PISA", "url": None},
+    {"nombre": "RUTA AL MAR", "url": None},
+    {"nombre": "RUTA AL SUR", "url": None},
+    {"nombre": "RUTA COSTERA C-B", "url": None},
+    {"nombre": "RUTA DEL CACAO", "url": None},
+    {"nombre": "R. MAGDALENA S.M", "url": None},
+    {"nombre": "RUTA DEL VALLE", "url": None},
+    {"nombre": "SABA. DE OCCIDENTE", "url": None},
+    {"nombre": "RUTA PORTUARIA", "url": None},
+    {"nombre": "TUNEL ABURRA OR.", "url": None},
+    {"nombre": "U.V CAMINO DEL P.", "url": None},
+    {"nombre": "VIA 40 EXPRESS", "url": None},
+    {"nombre": "VIAL DE LOS LLANOS", "url": None},
+    {"nombre": "TRANSV. SISGA", "url": None},
+    {"nombre": "MONTES DE MARIA", "url": None},
+    {"nombre": "RIO PAMPLONITA", "url": None},
+    {"nombre": "UNION DEL SUR", "url": None},
+    {"nombre": "VIAS DEL NUS", "url": None},
+    {"nombre": "YUMA", "url": None},
+    {"nombre": "ICCU", "url": None},
+    {"nombre": "AUT. URABÁ", "url": None},
+    {"nombre": "AUT. MAGDA MEDIO", "url": None}
 ]
 
 # -----------------------------
@@ -432,10 +432,12 @@ st.markdown('<h2 class="sub-header">🛣️ CONCESIONES VIALES</h2>', unsafe_all
 # Función JavaScript para redirección
 st.markdown("""
 <script>
-function redirectToConcession(concessionName) {
-    // Aquí puedes definir la URL específica para cada concesión
-    // Por ahora, redirige a una página genérica con el nombre de la concesión
-    window.open('https://ejemplo.com/concesiones/' + encodeURIComponent(concessionName), '_blank');
+function redirectToConcession(url) {
+    if (url) {
+        window.open(url, '_blank');
+    } else {
+        alert('Esta concesión estará disponible próximamente.');
+    }
 }
 </script>
 """, unsafe_allow_html=True)
@@ -444,12 +446,25 @@ function redirectToConcession(concessionName) {
 st.markdown('<div class="concessions-grid">', unsafe_allow_html=True)
 
 for i, concesion in enumerate(concesiones, 1):
+    nombre = concesion["nombre"]
+    url = concesion["url"]
+    
+    # Determinar la clase del botón y el texto
+    if url:
+        btn_class = "concession-btn"
+        btn_text = f"Acceder a {nombre}"
+        onclick = f"redirectToConcession('{url}')"
+    else:
+        btn_class = "concession-btn btn-disabled"
+        btn_text = "Próximamente"
+        onclick = "redirectToConcession(null)"
+    
     st.markdown(f"""
     <div class="concession-card">
         <div class="concession-number">{i}</div>
-        <h3 class="concession-title">{concesion}</h3>
-        <button class="concession-btn" onclick="redirectToConcession('{concesion}')">
-            Acceder a {concesion}
+        <h3 class="concession-title">{nombre}</h3>
+        <button class="{btn_class}" onclick="{onclick}">
+            {btn_text}
         </button>
     </div>
     """, unsafe_allow_html=True)
@@ -463,11 +478,11 @@ st.markdown("""
 <div class="info-box">
     <h3>ℹ️ Información Importante</h3>
     <ul>
+        <li><strong>Concesiones Activas:</strong> APP GICA, ALMA y ALT. VIALES están disponibles para acceso inmediato</li>
+        <li><strong>Próximamente:</strong> Las demás concesiones estarán disponibles en futuras actualizaciones</li>
         <li><strong>Acceso Directo:</strong> Cada botón te lleva directamente a la concesión correspondiente en una nueva pestaña</li>
         <li><strong>Seguridad:</strong> Conexiones seguras y encriptadas para proteger tus datos</li>
-        <li><strong>Soporte:</strong> Cada concesión incluye ayuda contextual y documentación completa</li>
-        <li><strong>Actualizaciones:</strong> Sistema en constante mejora con nuevas funcionalidades</li>
-        <li><strong>Total de Concesiones:</strong> 46 concesiones viales disponibles</li>
+        <li><strong>Total de Concesiones:</strong> 46 concesiones viales disponibles (3 activas actualmente)</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
